@@ -1,11 +1,9 @@
-import LoginInterface from "../interfaces/LoginInterface"
 
-export default function UserPage({ login }: LoginInterface){
+export default function UserPage(){
     
     return (
         <>
-            <h3>Username</h3>
-            <p>{login}</p>
+            <h3>User Page</h3>
         </>
     )
 }

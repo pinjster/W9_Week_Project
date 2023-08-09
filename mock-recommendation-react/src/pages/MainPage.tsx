@@ -1,14 +1,16 @@
 import Body from "../component/Body"
-import LoginInterface from "../interfaces/LoginInterface"
-import { allItems } from "../types/MediaType"
-import Media  from "../component/Media"
+import { useContext } from "react"
+import { UserContext } from "../contexts/UserProvider"
 
-export default function MainPage({ login }: LoginInterface){
+export default function MainPage(){
+
+    const { user } = useContext(UserContext) 
+
     return (
-        <Body navbar={true} login={login}>
+        <Body navbar={true}>
             <h1>Welcome</h1>
+            { user.logged ? <span>{ user.username }</span> : <br /> }
             <div className="main-items">
-            { allItems.map((item , i) => <Media key={i} item={item} />) }
             </div>
         </Body>
     )

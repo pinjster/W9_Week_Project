@@ -4,7 +4,7 @@ import SignIn from "../component/SignIn"
 
 export default function SignInPage(){
     return (
-        <Body navbar={true} login={false}>
+        <Body navbar={true} >
             <SignIn />
         </Body>
     )

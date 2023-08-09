@@ -1,4 +1,8 @@
-import MediaInterface from "../interfaces/MediaInterface";
+import { MediaType } from "../types";
+
+export interface MediaInterface {
+    item: MediaType
+}
 
 export default function Media({item}: MediaInterface){
     const {title, year, author, format, rated, body, img, genres} = item;
@@ -12,10 +16,11 @@ export default function Media({item}: MediaInterface){
                 <p className="media-type">({ format })</p>
                 { typeof rated !== "undefined" && <p className="media-rated">{rated}</p> }
                 { typeof body !== "undefined" && <p className="media-rated">{body}</p> }
-                <ul className="media-genres">
+                <p>{ genres }</p>
+                {/* <ul className="media-genres">
                     <li>Genres: </li>
                     { genres.map((genre, i) => <li key={i} ><a href="">#{ genre }</a></li>) }
-                </ul>
+                </ul> */}
             </div>
         </div>
     )

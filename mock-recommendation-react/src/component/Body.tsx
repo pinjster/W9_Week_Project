@@ -3,17 +3,16 @@ import Footer from "./Footer"
 
 interface BodyProps {
     navbar: boolean,
-    login: boolean,
     children: JSX.Element | JSX.Element[]
 }
 
-export default function Body({navbar, children, login}: BodyProps) {
+export default function Body({navbar, children}: BodyProps) {
     
     return (
         <div className="body-component">
-            { navbar && <Navbar login={login} />}
+            { navbar && <Navbar />}
             {children}
-            { <Footer login={login} /> }
+            { <Footer /> }
         </div>
     )
 }

@@ -1,20 +1,24 @@
+import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../contexts/UserProvider";
+import Searchbar from "./Searchbar";
 
-interface LoggedStatus {
-    login: boolean
-}
 
-export default function Navbar({ login }: LoggedStatus){
+export default function Navbar(){
+
+    const { user } = useContext(UserContext) 
 
     return (
         <ul className="navbar-list">
-            <li><a href="/">Home</a></li>
-            { login ? 
-            <li><a href="/user">Profile</a></li>
+            <li><NavLink to="/">Home</NavLink></li>
+            { user.logged ? 
+            <li><NavLink to="/user">Profile</NavLink></li>
             : 
-            <li><a href="/sign-up">Sign Up!</a></li>
+            <li><NavLink to="/sign-up">Sign Up!</NavLink></li>
             }
-            { login ? 
-            <li><a href="/my-feed">My Feed</a></li>: <li><a href="/sign-in">Sign In</a></li> }
+            <li><Searchbar /></li>
+            { user.logged ? 
+            <li><NavLink to="/my-profile">{ user.username }</NavLink></li>: <li><NavLink to="/sign-in">Sign In</NavLink></li> }
         </ul>
     )
 }
