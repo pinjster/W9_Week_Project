@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
-//import { useState } from 'react'
 import MainPage from "./pages/MainPage"
 import UserPage from "./pages/UserPage"
 import SignUpPage from "./pages/SignUpPage"
@@ -8,10 +7,27 @@ import FeedPage from "./pages/FeedPage"
 import SignOutPage from "./pages/SignOutPage"
 import MyProfilePage from "./pages/MyProfilePage"
 import FindMediaPage from "./pages/FindMediaPage"
-
+import { useContext, useEffect } from "react"
+import { UserContext } from "./contexts/UserProvider"
 
 
 function App() {
+
+  const { setUser } = useContext(UserContext);
+
+  useEffect(() => {
+    const localUser = localStorage.getItem("localUser");
+    const localToken = localStorage.getItem("localToken");
+    if(localUser && localToken){
+      setUser({
+        logged: true,
+        username: JSON.parse(localUser),
+        token: JSON.parse(localToken)
+      });
+    }
+  }, []);
+
+
 
   return (
     <BrowserRouter>

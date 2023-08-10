@@ -8,6 +8,7 @@ export default function SignIn() {
     const navigate = useNavigate()
 
     const { user, setUser } = useContext(UserContext)
+    const baseURL = import.meta.env.VITE_APP_BASE_API
 
     useEffect(() => {
         if(user.username){
@@ -17,7 +18,7 @@ export default function SignIn() {
 
     async function handleUserData(e: FormEvent){
         e.preventDefault();
-        const res = await fetch('https://matrix-fakebook-123.onrender.com/api/sign-in', {
+        const res = await fetch(`${baseURL}/signin`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -29,16 +30,22 @@ export default function SignIn() {
         })
         if(res.ok){
             const data = await res.json()
-            setUser({
-                logged: true,
-                username: usernameField.current!.value.toString(),
-                token: data.access_token
-            })
-            usernameField.current!.value = ''
-            passwordField.current!.value = ''
+            establishUser(usernameField.current!.value, data.access_token);
+            usernameField.current!.value = '';
+            passwordField.current!.value = '';
         } else {
             window.alert('Invalid UserData')
         }
+    }
+
+    function establishUser(username: string, token: string){
+        setUser({
+                logged: true,
+                username: username,
+                token: token
+            })
+        localStorage.setItem("localUser", JSON.stringify( username ))
+        localStorage.setItem("localToken", JSON.stringify( token ))
     }
 
     return (
@@ -47,9 +54,7 @@ export default function SignIn() {
             <form onSubmit={handleUserData} className="sign-component">
                 <input type="text" ref={usernameField} placeholder="username" />
                 <input type="password" ref={passwordField} placeholder="password" />
-                <input type="submit" value="Sign In" onClick={ () => {
-
-                }} />
+                <input type="submit" value="Sign In" />
             </form>
         </>
     )

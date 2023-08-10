@@ -12,13 +12,15 @@ export default function Navbar(){
         <ul className="navbar-list">
             <li><NavLink to="/">Home</NavLink></li>
             { user.logged ? 
-            <li><NavLink to="/user">Profile</NavLink></li>
+            <li><NavLink to="/my-profile">Profile</NavLink></li>
             : 
             <li><NavLink to="/sign-up">Sign Up!</NavLink></li>
             }
             <li><Searchbar /></li>
             { user.logged ? 
-            <li><NavLink to="/my-profile">{ user.username }</NavLink></li>: <li><NavLink to="/sign-in">Sign In</NavLink></li> }
+            <li><NavLink to="/my-profile">{ user.username }</NavLink></li>
+            : <li><NavLink to="/sign-in">Sign In</NavLink></li> }
+            { user.logged && <li><NavLink to="/sign-out">Sign Out</NavLink></li> }
         </ul>
     )
 }

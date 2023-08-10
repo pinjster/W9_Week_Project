@@ -24,3 +24,7 @@ export type MediaType = {
     img: string,
     genres: string[]
 }
+
+export interface MediaCollection {
+    collection: MediaType[]
+}

@@ -10,6 +10,8 @@ export default function SignOutPage() {
 
     useEffect(() => {
         setUser({username: "", token: "", logged: false})
+        localStorage.removeItem("localUser")
+        localStorage.removeItem("localToken")
         navigate('/')
     })
 

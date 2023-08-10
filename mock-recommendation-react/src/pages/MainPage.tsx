@@ -8,8 +8,7 @@ export default function MainPage(){
 
     return (
         <Body navbar={true}>
-            <h1>Welcome</h1>
-            { user.logged ? <span>{ user.username }</span> : <br /> }
+            <h1>Welcome { user.logged && <span>{ user.username }</span> } </h1>
             <div className="main-items">
             </div>
         </Body>
