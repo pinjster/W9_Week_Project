@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom"
 import Body from "../component/Body"
-import { MOVIE_ACCESS_TOKEN } from "../secret"
 import { MediaType, mediaFormat } from "../types"
 import Media from "../component/Media"
 import { useEffect, useState } from "react"
 
 const movieApiUrl = import.meta.env.VITE_APP_MOVIE_API
+const movieToken = import.meta.env.MOVIE_ACCESS_TOKEN
 
 export default function FindMediaPage() {
     
@@ -18,7 +18,7 @@ export default function FindMediaPage() {
                 method: 'GET',
                 headers: {
                   accept: 'application/json',
-                  Authorization: `Bearer ${MOVIE_ACCESS_TOKEN}`
+                  Authorization: `Bearer ${movieToken}`
                 }
               };
               
@@ -37,10 +37,10 @@ export default function FindMediaPage() {
             let newItem: MediaType = {
                 title: data.results[i].original_title,
                 year: data.results[i].release_date,
-                format: mediaFormat.movie,
+                formatType: mediaFormat.movie,
                 author: '',
-                rated: data.results[i].vote_average.toString(),
-                body: data.results[i].overview,
+                rating: data.results[i].vote_average.toString(),
+                description: data.results[i].overview,
                 img: data.backdrop_path,
                 genres: ['', '']
             }

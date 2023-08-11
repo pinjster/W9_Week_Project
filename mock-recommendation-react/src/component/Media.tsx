@@ -5,7 +5,7 @@ export interface MediaInterface {
 }
 
 export default function Media({item}: MediaInterface){
-    const {title, year, author, format, rated, body, img, genres} = item;
+    const {title, year, author, formatType, rating, description, img, genres} = item;
 
     return(
         <div className="media-component">
@@ -13,9 +13,9 @@ export default function Media({item}: MediaInterface){
             <div className="media-info">
                 <p className="media-title">{ title } ({ year })</p>
                 <p className="media-author">-{ author }</p>
-                <p className="media-type">({ format })</p>
-                { typeof rated !== "undefined" && <p className="media-rated">{rated}</p> }
-                { typeof body !== "undefined" && <p className="media-rated">{body}</p> }
+                <p className="media-type">({ formatType })</p>
+                { typeof rating !== "undefined" && <p className="media-rated">{rating}</p> }
+                { typeof description !== "undefined" && <p className="media-rated">{description}</p> }
                 <p>{ genres }</p>
                 {/* <ul className="media-genres">
                     <li>Genres: </li>

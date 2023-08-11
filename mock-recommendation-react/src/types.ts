@@ -17,12 +17,14 @@ export type UserType = {
 export type MediaType = {
     title: string,
     year: string,
-    format: mediaFormat,
+    formatType: mediaFormat,
     author: string,
-    rated?: number,
-    body?: string,
+    rating?: number,
+    description?: string,
     img: string,
     genres: string[]
+    mediaID?: string,
+    secondID?: string,
 }
 
 export interface MediaCollection {

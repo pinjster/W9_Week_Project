@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 #API KEYS
-*secret.ts
+*.env
